@@ -16,7 +16,10 @@ ENDCLASS.
 CLASS zcl_aii_abap_course_basics IMPLEMENTATION.
 
   METHOD if_oo_adt_classrun~main.
-    DATA(result) = zif_abap_course_basics~get_current_date_time( ).
+
+    DATA(result) = zif_abap_course_basics~hello_world( 'Atanas' ).
+    out->write( result ).
+
   ENDMETHOD.
 
   METHOD zif_abap_course_basics~calculator.
@@ -26,7 +29,6 @@ CLASS zcl_aii_abap_course_basics IMPLEMENTATION.
   METHOD zif_abap_course_basics~date_parsing.
   ENDMETHOD.
 
-
   METHOD zif_abap_course_basics~fizz_buzz.
   ENDMETHOD.
 
@@ -34,8 +36,11 @@ CLASS zcl_aii_abap_course_basics IMPLEMENTATION.
   METHOD zif_abap_course_basics~get_current_date_time.
   ENDMETHOD.
 
-
   METHOD zif_abap_course_basics~hello_world.
+
+    DATA(lv_user_id) = sy-uname.
+    rv_result = |Hello { iv_name }, your system user id { lv_user_id }.|.
+
   ENDMETHOD.
 
 
