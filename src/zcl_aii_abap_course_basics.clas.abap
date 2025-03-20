@@ -5,15 +5,19 @@ CLASS zcl_aii_abap_course_basics DEFINITION
 
   PUBLIC SECTION.
 
-    INTERFACES zif_abap_course_basics .
+    INTERFACES if_oo_adt_classrun.
+    INTERFACES zif_abap_course_basics.
+
   PROTECTED SECTION.
   PRIVATE SECTION.
 ENDCLASS.
 
 
-
 CLASS zcl_aii_abap_course_basics IMPLEMENTATION.
 
+  METHOD if_oo_adt_classrun~main.
+    DATA(result) = zif_abap_course_basics~get_current_date_time( ).
+  ENDMETHOD.
 
   METHOD zif_abap_course_basics~calculator.
   ENDMETHOD.
