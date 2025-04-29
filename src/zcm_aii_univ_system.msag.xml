@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZCM_AII_UNIV_SYSTEM</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>University system message class</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCM_AII_UNIV_SYSTEM</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Insert operation for a University with ID &amp;1 failed in its creation.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCM_AII_UNIV_SYSTEM</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Commit operation failed.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCM_AII_UNIV_SYSTEM</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Student with ID &amp;1 was not found.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCM_AII_UNIV_SYSTEM</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Update operation for a Student with ID &amp;1 failed during its deletion.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCM_AII_UNIV_SYSTEM</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>No students found in the University with ID &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCM_AII_UNIV_SYSTEM</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Error during SELECT statement.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCM_AII_UNIV_SYSTEM</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Insert operation for a Student with ID &amp;1 failed in its addition to UNI.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCM_AII_UNIV_SYSTEM</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>Insert operation for a Student with ID &amp;1 failed in its creation.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZCM_AII_UNIV_SYSTEM</ARBGB>
+     <MSGNR>009</MSGNR>
+     <TEXT>Unable to complete the update for the Student with ID &amp;1.</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

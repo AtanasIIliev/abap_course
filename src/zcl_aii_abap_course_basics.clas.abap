@@ -74,7 +74,7 @@ CLASS zcl_aii_abap_course_basics IMPLEMENTATION.
         out->write( '---------lt_travel_ids_task7_3---------' ).
         out->write( lt_travel_ids_task7_3 ).
 
-      WHEN 8.
+      WHEN 8. " Open SQL
         DATA:
           lt_travel_ids_task8_1 TYPE TABLE OF zif_aii_abap_course_basics~lts_travel_id,
           lt_travel_ids_task8_2 TYPE TABLE OF zif_aii_abap_course_basics~lts_travel_id,
@@ -258,8 +258,8 @@ CLASS zcl_aii_abap_course_basics IMPLEMENTATION.
                currency_code    AS currency_code,
                description      AS description,
                CASE status
-             WHEN 'B' THEN  'A'  " ACCEPTED
-             WHEN 'X'  THEN 'X' " CANCELLED
+             WHEN 'B' THEN 'A'  " ACCEPTED
+             WHEN 'X' THEN 'X'  " CANCELLED
                  ELSE 'O'         " open
             END                 AS overall_status,
                createdby        AS createdby,
