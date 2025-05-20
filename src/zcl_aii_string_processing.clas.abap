@@ -12,7 +12,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_aii_string_processing IMPLEMENTATION.
+CLASS ZCL_AII_STRING_PROCESSING IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 * Declarations
 **********************************************************************

@@ -11,7 +11,8 @@ ENDCLASS.
 
 
 
-CLASS zcl_rap_eml_aii IMPLEMENTATION.
+CLASS ZCL_RAP_EML_AII IMPLEMENTATION.
+
 
   METHOD if_oo_adt_classrun~main.
 
@@ -122,5 +123,4 @@ CLASS zcl_rap_eml_aii IMPLEMENTATION.
      out->write( 'Delete done!' ).
 
   ENDMETHOD.
-
 ENDCLASS.

@@ -1,0 +1,107 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: { typeName: 'Order',
+                typeNamePlural: 'Orders',
+                title: { type: #STANDARD, label: 'Order', value: 'OrderID' } },
+  presentationVariant: [{ sortOrder: [{ by: 'CreationDt', direction:  #DESC }] }] } //TODO: ASC or DSC? 
+  
+annotate view ZC_RAP_ORDER_AII
+    with 
+{
+
+//TODO: Labels for fieldgroup elements!!!
+  
+  @UI.facet: [ { id:              'Order', // DO I need it?
+                 purpose:         #HEADER,
+                 type:            #FIELDGROUP_REFERENCE,
+                 label:           'Order Header',
+                 targetQualifier: 'HeaderOrders', // Refers to lineItems with @UI.fieldGroup: [{qualifier: 'HeaderOrders'}]
+                 position:        10 },
+               { id:              'Order', // DO I need it?
+                 purpose:         #STANDARD,
+                 type:            #FIELDGROUP_REFERENCE,
+                 label:           'Order Details',
+                 targetQualifier: 'OrderDetails',
+                 position:         20 },         // Refers to lineItems with @UI.fieldGroup: [{qualifier: 'OrderDetails'}] }
+               { id:              'Item',
+                 purpose:         #STANDARD,
+                 type:            #LINEITEM_REFERENCE,
+                 label:           'Items',
+                 position:        30,
+                 targetElement:   '_Item'} ] 
+                 
+  @UI.hidden: true                 
+    OrderUuid;
+    
+  @UI: {  lineItem:       [ { position: 10 } ] ,
+          selectionField: [ { position: 10 } ] ,
+          fieldGroup:     [{  qualifier: 'HeaderOrders',
+                              position:  10 }] }
+    OrderId;
+    
+ @EndUserText.label: 'Name'   
+  @UI: {  lineItem:       [ { position: 20 } ] ,
+          fieldGroup:     [{  qualifier: 'HeaderOrders',
+                              position:  20,
+                              label:    'Name of the order' },
+                           {  qualifier: 'OrderDetails',
+                              position:   10 }]  }    
+    Name;
+ 
+ @EndUserText.label: 'Status'   
+   @UI: {  lineItem:       [ { position: 30 },
+                            { type: #FOR_ACTION, dataAction: 'orderCompleted', label: 'Complete Order' },
+                            { type: #FOR_ACTION, dataAction: 'orderCancelled', label: 'Cancel Order' } ],
+//            fieldGroup:   [ { type: #FOR_ACTION, qualifier: 'OrderDetails', dataAction: 'orderCompleted', label: 'Complete Order' },
+//                            { type: #FOR_ACTION, qualifier: 'OrderDetails', dataAction: 'orderCancelled', label: 'Cancel   Order' } ] ,                 
+          selectionField: [ { position: 20 } ] //TODO: check the positions
+           } 
+    Status;
+
+@EndUserText.label: 'Customer'
+  @UI: {  lineItem:       [ { position: 50 } ],
+          selectionField: [ { position: 40 } ],
+          fieldGroup:     [{  qualifier: 'OrderDetails',
+                              position:   20 }] }    
+    CustomerId;
+    
+ @UI: {  lineItem:       [{ position: 70 }] }
+    complexity;    
+//    CustomerName;
+
+ @UI: {  fieldGroup:     [{  qualifier: 'OrderDetails',
+                              position:   40 }] }  
+    DeliveryCountry;
+//    TotalPrice;
+//    CurrencyCode;
+
+  @EndUserText.label: 'Creation Date'
+  @UI: {  lineItem:       [ { position: 40 } ] ,
+          selectionField: [ { position: 30 } ] ,
+          fieldGroup:     [{  qualifier: 'OrderDetails',
+                              position:   50 }] }
+    CreationDt;
+ 
+   @EndUserText.label: 'Completion Date'   
+   @UI: {  fieldGroup:     [{  qualifier: 'OrderDetails',
+                              position:   60 }] }      
+    CompletionDt; 
+      
+   @EndUserText.label: 'Cancellation Date'  
+   @UI: {  fieldGroup:     [{  qualifier: 'OrderDetails',
+                              position:   70 }] } 
+    CancellationDt;
+    
+  @UI.hidden: true  
+    CreatedBy;
+    
+  @UI.hidden: true    
+    CreatedAt;
+    
+  @UI.hidden: true    
+    LastChangedBy;
+    
+  @UI.hidden: true    
+    LastChangeAt;
+    
+}

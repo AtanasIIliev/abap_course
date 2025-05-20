@@ -12,7 +12,11 @@ CLASS zcl_aii_eml DEFINITION
 
 ENDCLASS.
 
-CLASS zcl_aii_eml IMPLEMENTATION.
+
+
+CLASS ZCL_AII_EML IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
     update_tab = VALUE #( ( AgencyID    = '070003'
                             name        = 'VISAGES Agency'

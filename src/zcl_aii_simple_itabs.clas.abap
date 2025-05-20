@@ -12,7 +12,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_aii_simple_itabs IMPLEMENTATION.
+CLASS ZCL_AII_SIMPLE_ITABS IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
 * Declarations

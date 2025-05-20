@@ -18,7 +18,10 @@ CLASS zcl_aii_university DEFINITION
 
 ENDCLASS.
 
-CLASS zcl_aii_university IMPLEMENTATION.
+
+
+CLASS ZCL_AII_UNIVERSITY IMPLEMENTATION.
+
 
   METHOD zif_aii_university~add_student.
 
@@ -45,6 +48,7 @@ CLASS zcl_aii_university IMPLEMENTATION.
     ENDIF.
 
   ENDMETHOD.
+
 
   METHOD zif_aii_university~create_university.
     " The other way is to declare it in the public section
@@ -78,6 +82,7 @@ CLASS zcl_aii_university IMPLEMENTATION.
     " Return the generated university ID as the output of the method
     rv_university_id = ls_university-university_id.
   ENDMETHOD.
+
 
   METHOD zif_aii_university~delete_student.
 
@@ -120,6 +125,7 @@ CLASS zcl_aii_university IMPLEMENTATION.
     ENDIF.
 
   ENDMETHOD.
+
 
   METHOD zif_aii_university~list_students.
 

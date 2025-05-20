@@ -12,7 +12,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_aii_iterations IMPLEMENTATION.
+CLASS ZCL_AII_ITERATIONS IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
 * Declarations

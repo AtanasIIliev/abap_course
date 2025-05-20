@@ -12,7 +12,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_aii_global_class IMPLEMENTATION.
+CLASS ZCL_AII_GLOBAL_CLASS IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
 *    CONSTANTS: c_carrier_id    TYPE              /dmo/carrier_id       VALUE 'LH',

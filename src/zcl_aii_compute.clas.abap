@@ -11,7 +11,10 @@ CLASS zcl_aii_compute DEFINITION
 ENDCLASS.
 
 
-CLASS zcl_aii_compute IMPLEMENTATION.
+
+CLASS ZCL_AII_COMPUTE IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
     DATA number1 TYPE i.
     DATA number2 TYPE i.

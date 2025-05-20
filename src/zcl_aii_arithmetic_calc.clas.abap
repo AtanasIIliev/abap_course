@@ -12,7 +12,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_aii_arithmetic_calc IMPLEMENTATION.
+CLASS ZCL_AII_ARITHMETIC_CALC IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 * Declarations
 **********************************************************************

@@ -10,7 +10,10 @@ CLASS zcl_aii_iterate DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zcl_aii_iterate IMPLEMENTATION.
+
+
+CLASS ZCL_AII_ITERATE IMPLEMENTATION.
+
 
   METHOD if_oo_adt_classrun~main.
 

@@ -30,7 +30,8 @@ ENDCLASS.
 
 
 
-CLASS zcl_aii_structured_data_obj IMPLEMENTATION.
+CLASS ZCL_AII_STRUCTURED_DATA_OBJ IMPLEMENTATION.
+
 
   METHOD if_oo_adt_classrun~main.
 

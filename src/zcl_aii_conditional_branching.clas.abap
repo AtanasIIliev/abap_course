@@ -12,7 +12,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_aii_conditional_branching IMPLEMENTATION.
+CLASS ZCL_AII_CONDITIONAL_BRANCHING IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 * Declarations
 **********************************************************************

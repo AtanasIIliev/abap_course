@@ -12,7 +12,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_aii_predefined_types IMPLEMENTATION.
+CLASS ZCL_AII_PREDEFINED_TYPES IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 * Data Objects with Built-in Types
 **********************************************************************

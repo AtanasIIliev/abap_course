@@ -13,7 +13,9 @@ CLASS zcl_aii_abap_course_basics DEFINITION
 ENDCLASS.
 
 
-CLASS zcl_aii_abap_course_basics IMPLEMENTATION.
+
+CLASS ZCL_AII_ABAP_COURSE_BASICS IMPLEMENTATION.
+
 
   METHOD if_oo_adt_classrun~main.
 
@@ -95,6 +97,7 @@ CLASS zcl_aii_abap_course_basics IMPLEMENTATION.
     ENDCASE.
   ENDMETHOD.
 
+
   METHOD zif_aii_abap_course_basics~calculator.
 
     CASE iv_operator.
@@ -116,6 +119,7 @@ CLASS zcl_aii_abap_course_basics IMPLEMENTATION.
     ENDCASE.
 
   ENDMETHOD.
+
 
   METHOD zif_aii_abap_course_basics~date_parsing.
 
@@ -182,6 +186,7 @@ CLASS zcl_aii_abap_course_basics IMPLEMENTATION.
 
   ENDMETHOD.
 
+
   METHOD zif_aii_abap_course_basics~fizz_buzz.
     DATA: lv_number TYPE i,
           lv_text   TYPE string,
@@ -208,6 +213,7 @@ CLASS zcl_aii_abap_course_basics IMPLEMENTATION.
     ENDLOOP.
   ENDMETHOD.
 
+
   METHOD zif_aii_abap_course_basics~get_current_date_time.
     DATA lv_timestamp TYPE timestampl.
 
@@ -216,12 +222,14 @@ CLASS zcl_aii_abap_course_basics IMPLEMENTATION.
     rv_result =  lv_timestamp.
   ENDMETHOD.
 
+
   METHOD zif_aii_abap_course_basics~hello_world.
 
     DATA(lv_user_id) = sy-uname.
     rv_result = |Hello { iv_name }, your system user id { lv_user_id }.|.
 
   ENDMETHOD.
+
 
   METHOD zif_aii_abap_course_basics~internal_tables.
 
@@ -336,6 +344,7 @@ CLASS zcl_aii_abap_course_basics IMPLEMENTATION.
 
   ENDMETHOD.
 
+
   METHOD zif_aii_abap_course_basics~open_sql.
     " Get travel_ids as per the following criteria - agency '070001' with booking fee 20 JPY
     SELECT travel_id
@@ -383,6 +392,7 @@ CLASS zcl_aii_abap_course_basics IMPLEMENTATION.
 
   ENDMETHOD.
 
+
   METHOD zif_aii_abap_course_basics~scrabble_score.
     DATA: lv_char     TYPE char1,
           lv_result   TYPE i,
@@ -400,6 +410,4 @@ CLASS zcl_aii_abap_course_basics IMPLEMENTATION.
 
     rv_result = lv_result.
   ENDMETHOD.
-
 ENDCLASS.
-

@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_generate_demo_data_aii IMPLEMENTATION.
+CLASS ZCL_GENERATE_DEMO_DATA_AII IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.

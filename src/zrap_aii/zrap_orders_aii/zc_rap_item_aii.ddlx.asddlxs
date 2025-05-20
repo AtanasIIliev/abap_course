@@ -1,0 +1,50 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: { typeName: 'Item',
+                typeNamePlural: 'Items',
+                title: { type: #STANDARD, value: 'ItemUuid' } } }
+                
+annotate view ZC_RAP_ITEM_AII
+    with 
+{
+  @UI.facet: [ { id:            'Item',
+                 purpose:       #STANDARD,
+                 type:          #IDENTIFICATION_REFERENCE,
+                 label:         'Item',
+                 position:      10 }  ]
+   @UI.hidden: true                
+    ItemUuid;
+    
+   @UI.hidden: true    
+    OrderUuid;
+   
+  @UI: { lineItem:       [ { position: 10 } ],
+         identification: [ { position: 10 } ] } 
+    Name;
+ 
+ @EndUserText.label: 'Price' 
+  @UI: { lineItem:       [ { position: 20 } ],
+         identification: [ { position: 20 } ] }  
+         
+    ItemPrice;
+    
+//  @UI: { lineItem:       [ { position: 30 } ],
+//         identification: [ { position: 30 } ] }  
+//    CurrencyCode;
+    
+  @UI: { lineItem:       [ { position: 40 } ],
+         identification: [ { position: 40 } ] }  
+    Quantity;
+    
+  @UI.hidden: true  
+    CreatedBy;
+    
+  @UI.hidden: true    
+    CreatedAt;
+    
+  @UI.hidden: true    
+    LastChangedBy;
+    
+  @UI.hidden: true    
+    LastChangeAt;
+}

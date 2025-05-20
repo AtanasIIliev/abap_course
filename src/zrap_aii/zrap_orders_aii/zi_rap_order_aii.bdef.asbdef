@@ -1,0 +1,97 @@
+managed;
+with draft;
+//strict ( 2 );
+
+define behavior for ZI_RAP_ORDER_AII alias Order
+implementation in class zbp_i_rap_order_aii unique
+persistent table zrap_aorders_aii
+draft table zrap_dorders_aii
+lock master total etag LastChangeAt
+authorization master ( instance )
+etag master LastChangeAt
+{
+  create;
+  update;
+  delete;
+
+  association _Item { create; with draft; }
+
+  field ( numbering : managed, readonly ) OrderUuid;
+  field ( readonly )  OrderId, TotalPrice, Status, CreationDt, CancellationDt,
+                      CompletionDt, LastChangedBy, CreatedAt, CreatedBy, LastChangeAt;
+  field ( mandatory ) Name, CustomerId; //TODO: if remains some time to add all other fields and validate them as well!!!
+
+  action ( features : instance ) orderCompleted result [1] $self; //TODO: set completion dt
+  action ( features : instance ) orderCancelled result [1] $self; //TODO: set cancellation dt
+
+  determination setInitialStatus         on modify { create; }
+  determination incrementOrderId         on save   { create; }
+  determination populateCreationDate     on modify { create; } //TODO: to think whether should be here as separate determination or somewhere else!!!
+
+  validation   validateName              on save   { field Name; create; }
+  validation   validateCustomer          on save   { field CustomerId; create; }
+  //validation   validateDates           on save   { field .....  }
+
+// TODO: validation for item count - you should not be able to save an order with 0 item included in it.
+
+// TODO: draft determine action...
+
+  mapping for zrap_aorders_aii
+  {
+     OrderUuid          = order_uuid;
+     OrderId            = order_id;
+     Name               = name;
+     Status             = status;
+     CustomerId         = customer_id;
+     CreationDt         = creation_dt;
+     CancellationDt     = cancellation_dt;
+     CompletionDt       = completion_dt;
+     DeliveryCountry    = delivery_country;
+     TotalPrice         = total_price;
+     CurrencyCode       = currency_code;
+     CreatedBy          = created_by;
+     CreatedAt          = created_at;
+     LastChangedBy      = last_changed_by;
+     LastChangeAt       = last_change_at;
+   }
+}
+
+define behavior for ZI_RAP_ITEM_AII alias Item
+implementation in class zbp_i_rap_item_aii unique
+persistent table zrap_aitems_aii
+draft table zrap_ditems_aii
+lock dependent by _Order
+authorization dependent by _Order
+etag master LastChangeAt
+{
+  update;
+  delete;
+
+    association _Order { with draft; }
+
+  field ( numbering : managed, readonly ) ItemUuid;
+  field ( readonly ) OrderUuid, CreatedAt, CreatedBy,
+                     LastChangedBy, LastChangeAt;
+  field ( mandatory ) Name, Quantity, ItemPrice;
+
+  validation   validateName              on save   { field Name; create; }
+  validation   validateQuantity          on save   { field Quantity; create; }
+  validation   validateItemPrice         on save   { field ItemPrice; create; }
+
+  //TODO: Check carefully the assignment for more item determinations!!!
+  determination calculateTotalPrice      on modify { field ItemPrice, CurrencyCode; }
+
+  mapping for zrap_aitems_aii
+  {
+    ItemUuid     = item_uuid;
+    OrderUuid    = order_uuid;
+    Name         = name;
+    ItemPrice    = item_price;
+    CurrencyCode = currency_code;
+    Quantity     = quantity;
+    CreatedBy          = created_by;
+    CreatedAt          = created_at;
+    LastChangedBy      = last_changed_by;
+    LastChangeAt       = last_change_at;
+  }
+}

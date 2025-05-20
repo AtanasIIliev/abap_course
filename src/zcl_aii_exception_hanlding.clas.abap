@@ -12,7 +12,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_aii_exception_hanlding IMPLEMENTATION.
+CLASS ZCL_AII_EXCEPTION_HANLDING IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 * Declarations
 **********************************************************************

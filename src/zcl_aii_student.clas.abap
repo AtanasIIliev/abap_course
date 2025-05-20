@@ -18,7 +18,10 @@ CLASS zcl_aii_student DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zcl_aii_student IMPLEMENTATION.
+
+
+CLASS ZCL_AII_STUDENT IMPLEMENTATION.
+
 
   METHOD zif_aii_student~create_student.
     " The other way is to declare it in the public section
@@ -56,6 +59,7 @@ CLASS zcl_aii_student IMPLEMENTATION.
 
   ENDMETHOD.
 
+
   METHOD zif_aii_student~get_student.
 
     " Check if the student exists in the database
@@ -74,6 +78,7 @@ CLASS zcl_aii_student IMPLEMENTATION.
     ENDIF.
 
   ENDMETHOD.
+
 
   METHOD zif_aii_student~update_student.
 
@@ -121,5 +126,4 @@ CLASS zcl_aii_student IMPLEMENTATION.
     ENDIF.
 
   ENDMETHOD.
-
 ENDCLASS.

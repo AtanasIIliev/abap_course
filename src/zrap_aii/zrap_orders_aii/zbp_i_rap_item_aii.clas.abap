@@ -1,0 +1,5 @@
+CLASS zbp_i_rap_item_aii DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_rap_order_aii.
+ENDCLASS.
+
+CLASS zbp_i_rap_item_aii IMPLEMENTATION.
+ENDCLASS.

@@ -10,7 +10,10 @@ CLASS zcl_aii_university_system_run DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zcl_aii_university_system_run IMPLEMENTATION.
+
+
+CLASS ZCL_AII_UNIVERSITY_SYSTEM_RUN IMPLEMENTATION.
+
 
   METHOD if_oo_adt_classrun~main.
 
