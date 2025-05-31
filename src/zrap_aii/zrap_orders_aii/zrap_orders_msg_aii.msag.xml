@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZRAP_ORDERS_MSG_AII</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>RAP Messages</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZRAP_ORDERS_MSG_AII</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Customer &amp;1 unknown.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZRAP_ORDERS_MSG_AII</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>The name of order &amp;1 must contain only alphabetic characters.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZRAP_ORDERS_MSG_AII</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>The name of item &amp;1 must contain only alphabetic characters.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZRAP_ORDERS_MSG_AII</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Тhe quantity must be a positive number (&amp;1&gt;0).</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZRAP_ORDERS_MSG_AII</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Тhe price of an item must be a positive number (&amp;1&gt;0).</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZRAP_ORDERS_MSG_AII</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>The name of the order can not be empty.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZRAP_ORDERS_MSG_AII</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Order Name &amp;1 must be between 5 and 30 characters.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZRAP_ORDERS_MSG_AII</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>Delivery country can not be empty.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZRAP_ORDERS_MSG_AII</ARBGB>
+     <MSGNR>009</MSGNR>
+     <TEXT>The name of the item can not be empty.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZRAP_ORDERS_MSG_AII</ARBGB>
+     <MSGNR>010</MSGNR>
+     <TEXT>Item Name &amp;1 must be between 5 and 30 characters.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZRAP_ORDERS_MSG_AII</ARBGB>
+     <MSGNR>011</MSGNR>
+     <TEXT>Item price can not be empty.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZRAP_ORDERS_MSG_AII</ARBGB>
+     <MSGNR>012</MSGNR>
+     <TEXT>The quantity can not be empty.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZRAP_ORDERS_MSG_AII</ARBGB>
+     <MSGNR>013</MSGNR>
+     <TEXT>The order with ID:&amp;1 and Name: &amp;2 must have at least 1 item in it.</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

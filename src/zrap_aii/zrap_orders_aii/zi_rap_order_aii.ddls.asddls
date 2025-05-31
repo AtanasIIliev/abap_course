@@ -22,7 +22,7 @@ define root view entity ZI_RAP_ORDER_AII
     order_id as OrderId,
     name as Name,
     status as Status,
-    _Status.StatusDescription,
+    _Status.StatusDescription as StatusDescription,
     customer_id as CustomerId,
     delivery_country as DeliveryCountry,
     @Semantics.amount.currencyCode: 'CurrencyCode'

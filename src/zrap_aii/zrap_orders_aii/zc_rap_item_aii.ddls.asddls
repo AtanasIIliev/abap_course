@@ -12,7 +12,7 @@ define view entity ZC_RAP_ITEM_AII
     Name,
     @Semantics.amount.currencyCode: 'CurrencyCode'
     ItemPrice,
-    @Consumption.valueHelpDefinition: [{ entity : {name: 'I_Currency', element: 'Currency' }  }]
+//    @Consumption.valueHelpDefinition: [{ entity : {name: 'I_Currency', element: 'Currency' }  }]
     CurrencyCode,
     Quantity,
     CreatedBy,

@@ -14,17 +14,18 @@ define root view entity ZC_RAP_ORDER_AII
     @Consumption.valueHelpDefinition : [{ entity : {name: 'ZI_RAP_STATUS_AII', element: 'StatusDescription' }  }]
     @ObjectModel.text.element: [ 'Status' ]
     Status,
-    _Status.StatusDescription,
-//    @ObjectModel.virtualElementCalculatedBy: ''
-//    @EndUserText.label: 'Complexity'
-//    virtual Complexity : abap.string(16),
+    StatusDescription,
+    @EndUserText.label: 'Complexity'
+//    @ObjectModel.readOnly: true
+//    @ObjectModel.virtualElement: true
+    @ObjectModel.virtualElementCalculatedBy: 'ABAP:ZCL_CALCULATE_ORDER_COMPLEXITY'
+    virtual Complexity : abap.string(256),
     @Consumption.valueHelpDefinition: [{ entity : {name: '/DMO/I_Customer', element: 'CustomerID' }  }]
     @ObjectModel.text.element: [ 'CustomerName' ]
     @Search.defaultSearchElement: true
     CustomerId,
     _Customer.LastName as CustomerName,
     @Consumption.valueHelpDefinition: [{ entity : {name: 'I_Country', element: 'Country' }  }]
-    //@ObjectModel.text.element: [ 'DeliveryCountry' ] //TODO: Ask why when this is not comment a error check appears (3 characters and space - data element?)
     @Search.defaultSearchElement: true
     DeliveryCountry,
     @Semantics.amount.currencyCode: 'CurrencyCode'

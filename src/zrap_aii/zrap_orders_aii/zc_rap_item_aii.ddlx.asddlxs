@@ -17,20 +17,17 @@ annotate view ZC_RAP_ITEM_AII
     
    @UI.hidden: true    
     OrderUuid;
-   
+ 
+  @EndUserText.label: 'Item Name'   
   @UI: { lineItem:       [ { position: 10 } ],
          identification: [ { position: 10 } ] } 
     Name;
  
- @EndUserText.label: 'Price' 
+ @EndUserText.label: 'Item Price' 
   @UI: { lineItem:       [ { position: 20 } ],
          identification: [ { position: 20 } ] }  
          
     ItemPrice;
-    
-//  @UI: { lineItem:       [ { position: 30 } ],
-//         identification: [ { position: 30 } ] }  
-//    CurrencyCode;
     
   @UI: { lineItem:       [ { position: 40 } ],
          identification: [ { position: 40 } ] }  
