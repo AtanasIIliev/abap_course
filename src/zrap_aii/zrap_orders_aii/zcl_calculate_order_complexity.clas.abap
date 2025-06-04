@@ -15,9 +15,7 @@ ENDCLASS.
 
 CLASS zcl_calculate_order_complexity IMPLEMENTATION.
 
-
   METHOD if_sadl_exit_calc_element_read~calculate.
-
     DATA:
           lt_orders     TYPE STANDARD TABLE OF zc_rap_order_aii,
           lv_complexity TYPE string.

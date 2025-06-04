@@ -11,13 +11,6 @@ authorization master ( instance )
 etag master LastChangeAt
 {
 
-  internal action recalcTotalPrice;
-
-  draft action Edit;
-  draft action Activate;
-  draft action Discard;
-  draft action Resume;
-
   create;
   update ( features : instance );
   delete;
@@ -32,6 +25,7 @@ etag master LastChangeAt
   action ( features : instance ) orderCompleted result [1] $self;
   action ( features : instance ) orderCancelled result [1] $self;
 
+  internal action recalcTotalPrice;
 
   determination setInitialStatus         on modify { create; }
   determination incrementOrderId         on save   { create; }
@@ -42,6 +36,11 @@ etag master LastChangeAt
   validation   validateCustomer          on save   { field CustomerId; create; }
   validation   validateDeliveryCountry   on save   { field DeliveryCountry; create;  }
   validation   isOrderEmpty              on save   { create; update; }
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
 
    draft determine action Prepare {
     validation validateOrderName;

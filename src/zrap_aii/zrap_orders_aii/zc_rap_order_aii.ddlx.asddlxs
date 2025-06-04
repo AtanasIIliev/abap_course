@@ -11,13 +11,13 @@ annotate view ZC_RAP_ORDER_AII
 
 //TODO: Labels for fieldgroup elements!!!
   
-  @UI.facet: [ { id:              'Order', // DO I need it?
+  @UI.facet: [ { id:              'Order', 
                  purpose:         #HEADER,
                  type:            #FIELDGROUP_REFERENCE,
                  label:           'Order Header',
                  targetQualifier: 'HeaderOrders', // Refers to lineItems with @UI.fieldGroup: [{qualifier: 'HeaderOrders'}]
                  position:        10 },
-               { id:              'Order', // DO I need it?
+               { id:              'Order', 
                  purpose:         #STANDARD,
                  type:            #FIELDGROUP_REFERENCE,
                  label:           'Order Details',
@@ -48,15 +48,17 @@ annotate view ZC_RAP_ORDER_AII
                            {  qualifier: 'OrderDetails',
                               position:   10 }]  }    
     Name;
- 
+     
  @EndUserText.label: 'Status'   
    @UI: {  lineItem:       [ { position: 30 },
                             { type: #FOR_ACTION, dataAction: 'orderCompleted', label: 'Complete Order' },
                             { type: #FOR_ACTION, dataAction: 'orderCancelled', label: 'Cancel Order' } ],
            fieldGroup:    [ { type: #FOR_ACTION, qualifier: 'OrderDetails', dataAction: 'orderCompleted', label: 'Complete Order', position: 90 },
-                            { type: #FOR_ACTION, qualifier: 'OrderDetails', dataAction: 'orderCancelled', label: 'Cancel   Order', position: 90 } ] ,                 
-          selectionField: [ { position: 20 } ] //TODO: check the positions
-           }
+                            { type: #FOR_ACTION, qualifier: 'OrderDetails', dataAction: 'orderCancelled', label: 'Cancel   Order', position: 90 },
+                            {  qualifier: 'OrderDetails',
+                              position:   60 }] ,                 
+          selectionField: [ { position: 20 } ] 
+           }       
     Status;
 
 @EndUserText.label: 'Customer'
@@ -68,7 +70,6 @@ annotate view ZC_RAP_ORDER_AII
     
  @UI: {  lineItem:       [{ position: 70 }] }
     Complexity;    
-//    CustomerName;
 
  @UI: {  fieldGroup:     [{  qualifier: 'OrderDetails',
                               position:   40 }] }  
@@ -82,17 +83,17 @@ annotate view ZC_RAP_ORDER_AII
   @UI: {  lineItem:       [ { position: 40 } ] ,
           selectionField: [ { position: 30 } ] ,
           fieldGroup:     [{  qualifier: 'OrderDetails',
-                              position:   60 }] }
+                              position:   70 }] }
     CreationDt;
  
    @EndUserText.label: 'Completion Date'   
    @UI: {  fieldGroup:     [{  qualifier: 'OrderDetails',
-                              position:   70 }] }      
+                              position:   80 }] }      
     CompletionDt; 
       
    @EndUserText.label: 'Cancellation Date'  
    @UI: {  fieldGroup:     [{  qualifier: 'OrderDetails',
-                              position:   80 }] } 
+                              position:   90 }] } 
     CancellationDt;
   
   @EndUserText.label: 'Total Price' 

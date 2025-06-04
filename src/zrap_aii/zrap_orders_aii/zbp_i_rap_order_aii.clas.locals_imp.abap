@@ -4,8 +4,8 @@ CLASS lhc_Order DEFINITION INHERITING FROM cl_abap_behavior_handler.
     CONSTANTS:
       BEGIN OF lt_status,
         in_process TYPE zrapd_order_status_aii VALUE 'O', " In Process
-        completed  TYPE zrapd_order_status_aii VALUE 'A', " Completed
-        cancelled  TYPE zrapd_order_status_aii VALUE 'C', " Cancelled
+        completed  TYPE zrapd_order_status_aii VALUE 'C', " Completed
+        cancelled  TYPE zrapd_order_status_aii VALUE 'X', " Cancelled
       END OF lt_status.
 
     METHODS get_instance_features FOR INSTANCE FEATURES
@@ -43,6 +43,7 @@ CLASS lhc_Order DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS populateCurrencyCode FOR DETERMINE ON MODIFY
       IMPORTING keys FOR Order~populateCurrencyCode.
+
     METHODS isOrderEmpty FOR VALIDATE ON SAVE
       IMPORTING keys FOR Order~isOrderEmpty.
 
@@ -78,52 +79,87 @@ CLASS lhc_Order IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD orderCancelled.
-    " Set the status of the order to cancelled
-    MODIFY ENTITIES OF zi_rap_order_aii IN LOCAL MODE
-     ENTITY Order
-      UPDATE
-       FIELDS ( Status CancellationDt CompletionDt )
-       WITH VALUE #( FOR key IN keys
-                        ( %tky           = key-%tky
-                          Status         = lt_status-cancelled
-                          CancellationDt = cl_abap_context_info=>get_system_date( ) ) )
-       FAILED failed
-       REPORTED reported.
-
-    " Fill the response table
+    " Read relevant order instance data
     READ ENTITIES OF zi_rap_order_aii IN LOCAL MODE
-     ENTITY Order
-      ALL FIELDS WITH CORRESPONDING #( keys )
-     RESULT DATA(orders).
+      ENTITY Order
+        FIELDS ( Status ) WITH CORRESPONDING #( keys )
+      RESULT DATA(orders).
 
+    LOOP AT orders INTO DATA(order).
+      APPEND VALUE #(  %tky        = order-%tky
+                       %state_area = 'VALIDATE_STATUS' )
+      TO reported-order.
 
-    result = VALUE #(  FOR order IN orders
-                           ( %tky   = order-%tky
-                             %param = order  ) ).
+      IF order-Status = lt_status-in_process. " = 'O'
+
+        " Set the status of the order to cancelled
+        MODIFY ENTITIES OF zi_rap_order_aii IN LOCAL MODE
+         ENTITY Order
+          UPDATE
+           FIELDS ( Status CancellationDt )
+           WITH VALUE #( FOR key IN keys
+                            ( %tky           = key-%tky
+                              Status         = lt_status-cancelled
+                              CancellationDt = cl_abap_context_info=>get_system_date( ) ) )
+           FAILED failed
+           REPORTED reported.
+
+        APPEND VALUE #(  %tky   = order-%tky
+                         %param = order ) TO result.
+      ELSE.
+        APPEND VALUE #(  %tky = order-%tky ) TO failed-order.
+
+        APPEND VALUE #(  %tky        = order-%tky
+                         %state_area = 'VALIDATE_STATUS'
+                         %msg        = NEW zcm_rap_order_aii(
+                                           severity   = if_abap_behv_message=>severity-error
+                                           textid     = zcm_rap_order_aii=>status_already_set )
+                         %element-CustomerID = if_abap_behv=>mk-on )
+          TO reported-order.
+      ENDIF.
+    ENDLOOP.
   ENDMETHOD.
 
   METHOD orderCompleted.
-    " Set the status of the order to completed
-    MODIFY ENTITIES OF zi_rap_order_aii IN LOCAL MODE
-     ENTITY Order
-      UPDATE
-       FIELDS ( Status CompletionDt )
-       WITH VALUE #( FOR key IN keys
-                        ( %tky           = key-%tky
-                          Status         = lt_status-completed
-                          CompletionDt   = cl_abap_context_info=>get_system_date( ) ) )
-       FAILED failed
-       REPORTED reported.
-
-    " Fill the response table
+    " Read relevant order instance data
     READ ENTITIES OF zi_rap_order_aii IN LOCAL MODE
-     ENTITY Order
-      ALL FIELDS WITH CORRESPONDING #( keys )
-     RESULT DATA(orders).
+      ENTITY Order
+        FIELDS ( Status ) WITH CORRESPONDING #( keys )
+      RESULT DATA(orders).
 
-    result = VALUE #(  FOR order IN orders
-                           ( %tky   = order-%tky
-                             %param = order ) ).
+    LOOP AT orders INTO DATA(order).
+      APPEND VALUE #(  %tky        = order-%tky
+                       %state_area = 'VALIDATE_STATUS' )
+      TO reported-order.
+
+      IF order-Status = lt_status-in_process. " = 'O'
+
+        " Set the status of the order to cancelled
+        MODIFY ENTITIES OF zi_rap_order_aii IN LOCAL MODE
+         ENTITY Order
+          UPDATE
+           FIELDS ( Status CompletionDt )
+           WITH VALUE #( FOR key IN keys
+                            ( %tky           = key-%tky
+                              Status         = lt_status-cancelled
+                              CompletionDt   = cl_abap_context_info=>get_system_date( ) ) )
+           FAILED failed
+           REPORTED reported.
+
+        APPEND VALUE #(  %tky   = order-%tky
+                         %param = order ) TO result.
+      ELSE.
+        APPEND VALUE #(  %tky = order-%tky ) TO failed-order.
+
+        APPEND VALUE #(  %tky        = order-%tky
+                         %state_area = 'VALIDATE_STATUS'
+                         %msg        = NEW zcm_rap_order_aii(
+                                           severity   = if_abap_behv_message=>severity-error
+                                           textid     = zcm_rap_order_aii=>status_already_set )
+                         %element-CustomerID = if_abap_behv=>mk-on )
+          TO reported-order.
+      ENDIF.
+    ENDLOOP.
 
   ENDMETHOD.
 
@@ -271,8 +307,7 @@ CLASS lhc_Order IMPLEMENTATION.
                          %state_area = 'VALIDATE_NAME'
                          %msg        = NEW zcm_rap_order_aii(
                                            severity   = if_abap_behv_message=>severity-error
-                                           textid     = zcm_rap_order_aii=>initial_order_name
-                                           ordername = order-Name )
+                                           textid     = zcm_rap_order_aii=>initial_order_name )
                          %element-name = if_abap_behv=>mk-on )
           TO reported-order.
         CONTINUE.
@@ -354,9 +389,6 @@ CLASS lhc_Order IMPLEMENTATION.
                          %element-deliverycountry = if_abap_behv=>mk-on )
           TO reported-order.
       ENDIF.
-      "TODO: more checks!!!
-      "TODO: more checks!!!
-      "TODO: more checks!!!
     ENDLOOP.
   ENDMETHOD.
 
@@ -454,21 +486,32 @@ CLASS lhc_Order IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD isOrderEmpty.
-" Read relevant order instance data
+    " Read relevant order instance data
     READ ENTITIES OF zi_rap_order_aii IN LOCAL MODE
      ENTITY Order
-     FIELDS ( OrderUuid OrderId ) WITH CORRESPONDING #( keys )
+     FIELDS ( OrderUuid OrderId Name ) WITH CORRESPONDING #( keys )
      RESULT DATA(orders).
 
-" Read relevant item instance data
+    " Read relevant item instance data
     READ ENTITIES OF zi_rap_order_aii IN LOCAL MODE
        ENTITY Order BY \_Item
        FIELDS ( OrderUuid ItemUuid ) WITH CORRESPONDING #( keys )
        RESULT DATA(items).
 
-    " Check if any item exists
-    IF items IS INITIAL.
-     LOOP AT orders INTO DATA(order).
+    SORT items BY orderuuid.
+
+    LOOP AT orders INTO DATA(order).
+      " Clear state messages that might exist
+      APPEND VALUE #(  %tky        = order-%tky
+                     %state_area = 'IS_ORDER_EMPTY' )
+      TO reported-order.
+
+     " Check if any item exists for this order
+     READ TABLE items WITH KEY orderuuid = order-orderuuid TRANSPORTING NO FIELDS.
+
+      " Check if any item exists
+      IF sy-subrc <> 0.
+      " No items found for this order
         APPEND VALUE #(  %tky = order-%tky ) TO failed-order.
 
         APPEND VALUE #(  %tky        = order-%tky
@@ -476,12 +519,12 @@ CLASS lhc_Order IMPLEMENTATION.
                          %msg        = NEW zcm_rap_order_aii(
                                            severity   = if_abap_behv_message=>severity-error
                                            textid     = zcm_rap_order_aii=>is_order_empty
-                                           orderid    = order-OrderId
                                            ordername  = order-Name )
                          %element-name = if_abap_behv=>mk-on )
           TO reported-order.
-     ENDLOOP.
-    ENDIF.
+
+      ENDIF.
+    ENDLOOP.
   ENDMETHOD.
 
 ENDCLASS.

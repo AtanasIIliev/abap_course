@@ -84,7 +84,13 @@
      <SPRSL>E</SPRSL>
      <ARBGB>ZRAP_ORDERS_MSG_AII</ARBGB>
      <MSGNR>013</MSGNR>
-     <TEXT>The order with ID:&amp;1 and Name: &amp;2 must have at least 1 item in it.</TEXT>
+     <TEXT>The order &amp;1 must have at least 1 item in it.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZRAP_ORDERS_MSG_AII</ARBGB>
+     <MSGNR>014</MSGNR>
+     <TEXT>The status is already set. Further changes are not allowed.</TEXT>
     </T100>
    </T100>
   </asx:values>

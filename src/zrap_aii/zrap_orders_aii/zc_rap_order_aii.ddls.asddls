@@ -11,13 +11,12 @@ define root view entity ZC_RAP_ORDER_AII
     @Search.defaultSearchElement: true
     OrderId,
     Name,
-    @Consumption.valueHelpDefinition : [{ entity : {name: 'ZI_RAP_STATUS_AII', element: 'StatusDescription' }  }]
-    @ObjectModel.text.element: [ 'Status' ]
+    @Search.defaultSearchElement: true
+    @Consumption.valueHelpDefinition : [{ entity : {name: 'ZI_RAP_STATUS_AII', element: 'StatusDescription'}  }]
+    @ObjectModel.text.element: [ 'StatusDescription' ]
     Status,
     StatusDescription,
     @EndUserText.label: 'Complexity'
-//    @ObjectModel.readOnly: true
-//    @ObjectModel.virtualElement: true
     @ObjectModel.virtualElementCalculatedBy: 'ABAP:ZCL_CALCULATE_ORDER_COMPLEXITY'
     virtual Complexity : abap.string(256),
     @Consumption.valueHelpDefinition: [{ entity : {name: '/DMO/I_Customer', element: 'CustomerID' }  }]

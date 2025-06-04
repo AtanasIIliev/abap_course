@@ -4,13 +4,14 @@
 @Metadata.ignorePropagatedAnnotations: true
 @ObjectModel.usageType:{
     serviceQuality: #X,
-    sizeCategory: #S,
+    sizeCategory: #S, 
     dataClass: #MIXED
 }
+@ObjectModel.resultSet.sizeCategory: #XS // Dropdown
 define view entity ZI_RAP_STATUS_AII 
       as select from DDCDS_CUSTOMER_DOMAIN_VALUE_T( p_domain_name: 'ZRAP_STATUS_AII' ) as Status
-{ //Not sure if I really need the firts three fields?!
-    key value_low as StatusId,
+{ 
+    key Status.value_low as StatusId,
     @Semantics.text: true
-    text          as StatusDescription
+    Status.text          as StatusDescription
 }

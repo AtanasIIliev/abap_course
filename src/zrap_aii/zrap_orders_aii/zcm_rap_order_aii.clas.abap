@@ -64,7 +64,7 @@ CLASS zcm_rap_order_aii DEFINITION
       BEGIN OF initial_order_name,
         msgid TYPE symsgid VALUE 'ZRAP_ORDERS_MSG_AII',
         msgno TYPE symsgno VALUE '006',
-        attr1 TYPE scx_attrname VALUE 'ORDERNAME',
+        attr1 TYPE scx_attrname VALUE '',
         attr2 TYPE scx_attrname VALUE '',
         attr3 TYPE scx_attrname VALUE '',
         attr4 TYPE scx_attrname VALUE '',
@@ -94,7 +94,7 @@ CLASS zcm_rap_order_aii DEFINITION
       BEGIN OF initial_item_name,
         msgid TYPE symsgid VALUE 'ZRAP_ORDERS_MSG_AII',
         msgno TYPE symsgno VALUE '009',
-        attr1 TYPE scx_attrname VALUE 'ITEMNAME',
+        attr1 TYPE scx_attrname VALUE '',
         attr2 TYPE scx_attrname VALUE '',
         attr3 TYPE scx_attrname VALUE '',
         attr4 TYPE scx_attrname VALUE '',
@@ -134,11 +134,21 @@ CLASS zcm_rap_order_aii DEFINITION
       BEGIN OF is_order_empty,
         msgid TYPE symsgid VALUE 'ZRAP_ORDERS_MSG_AII',
         msgno TYPE symsgno VALUE '013',
-        attr1 TYPE scx_attrname VALUE 'ORDERID',
-        attr2 TYPE scx_attrname VALUE 'ORDERNAME',
+        attr1 TYPE scx_attrname VALUE 'ORDERNAME',
+        attr2 TYPE scx_attrname VALUE '',
         attr3 TYPE scx_attrname VALUE '',
         attr4 TYPE scx_attrname VALUE '',
       END OF is_order_empty .
+
+    CONSTANTS:
+      BEGIN OF status_already_set,
+        msgid TYPE symsgid VALUE 'ZRAP_ORDERS_MSG_AII',
+        msgno TYPE symsgno VALUE '014',
+        attr1 TYPE scx_attrname VALUE '',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF status_already_set.
 
     DATA:
       customerid       TYPE string               READ-ONLY,

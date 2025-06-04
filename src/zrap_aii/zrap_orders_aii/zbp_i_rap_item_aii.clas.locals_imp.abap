@@ -4,8 +4,8 @@ CLASS lhc_Item DEFINITION INHERITING FROM cl_abap_behavior_handler.
     CONSTANTS:
       BEGIN OF lt_status,
         in_process TYPE zrapd_order_status_aii VALUE 'O', " In Process
-        completed  TYPE zrapd_order_status_aii VALUE 'A', " Completed
-        cancelled  TYPE zrapd_order_status_aii VALUE 'C', " Cancelled
+        completed  TYPE zrapd_order_status_aii VALUE 'C', " Completed
+        cancelled  TYPE zrapd_order_status_aii VALUE 'X', " Cancelled
       END OF lt_status.
 
     METHODS calculateTotalPrice FOR DETERMINE ON MODIFY
@@ -64,6 +64,8 @@ CLASS lhc_Item IMPLEMENTATION.
 
       " Check if an item price is initial.
       IF item-ItemPrice IS INITIAL.
+        APPEND VALUE #(  %tky = item-%tky ) TO failed-item.
+
         APPEND VALUE #(  %tky        = item-%tky
                          %state_area = 'VALIDATE_PRICE'
                          %msg        = NEW zcm_rap_order_aii(
@@ -79,6 +81,8 @@ CLASS lhc_Item IMPLEMENTATION.
 
       " Check if an item price is a non-positive number.
       IF item-itemprice < 1.
+        APPEND VALUE #(  %tky = item-%tky ) TO failed-item.
+
         APPEND VALUE #(  %tky        = item-%tky
                          %state_area = 'VALIDATE_PRICE'
                          %msg        = NEW zcm_rap_order_aii(
@@ -111,12 +115,13 @@ CLASS lhc_Item IMPLEMENTATION.
 
       " Check if a item name is empty
       IF item-Name IS INITIAL.
+        APPEND VALUE #(  %tky = item-%tky ) TO failed-item.
+
         APPEND VALUE #(  %tky        = item-%tky
                          %state_area = 'VALIDATE_ITEM_NAME'
                          %msg        = NEW zcm_rap_order_aii(
                                            severity   = if_abap_behv_message=>severity-error
-                                           textid     = zcm_rap_order_aii=>initial_item_name
-                                           itemname = item-Name )
+                                           textid     = zcm_rap_order_aii=>initial_item_name )
                          %path-order-%tky-%is_draft = item-%is_draft
                          %path-order-%tky-OrderUuid = item-OrderUuid
                          %element-name = if_abap_behv=>mk-on )
@@ -130,6 +135,8 @@ CLASS lhc_Item IMPLEMENTATION.
 
       " Invalid characters check (only letters, numbers, space, _ and -)
       IF sy-subrc = 0.
+        APPEND VALUE #(  %tky = item-%tky ) TO failed-item.
+
         APPEND VALUE #(  %tky        = item-%tky
                          %state_area = 'VALIDATE_ITEM_NAME'
                          %msg        = NEW zcm_rap_order_aii(
@@ -145,6 +152,8 @@ CLASS lhc_Item IMPLEMENTATION.
 
       " Check min/max length
       IF strlen( item-Name ) < 5 OR strlen( item-Name ) > 30.
+        APPEND VALUE #(  %tky = item-%tky ) TO failed-item.
+
         APPEND VALUE #(  %tky        = item-%tky
                          %state_area = 'VALIDATE_ITEM_NAME'
                          %msg        = NEW zcm_rap_order_aii(
@@ -178,6 +187,8 @@ CLASS lhc_Item IMPLEMENTATION.
 
       " Check if an item quantity is initial.
       IF item-Quantity IS INITIAL.
+        APPEND VALUE #(  %tky = item-%tky ) TO failed-item.
+
         APPEND VALUE #(  %tky        = item-%tky
                          %state_area = 'VALIDATE_QUANTITY'
                          %msg        = NEW zcm_rap_order_aii(
