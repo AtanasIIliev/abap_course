@@ -233,13 +233,13 @@ CLASS lhc_Item IMPLEMENTATION.
     result =
       VALUE #(
         FOR item IN items
-          LET is_accepted_rejected =   COND #( WHEN item-Status = lt_status-completed OR
+          LET is_enabled_disabled =   COND #( WHEN item-Status = lt_status-completed OR
                                                     item-Status = lt_status-cancelled
                                                THEN if_abap_behv=>fc-o-disabled
                                                ELSE if_abap_behv=>fc-o-enabled  )
           IN
             ( %tky    = item-%tky
-              %delete = is_accepted_rejected  ) ).
+              %delete = is_enabled_disabled  ) ).
   ENDMETHOD.
 
 ENDCLASS.

@@ -140,15 +140,17 @@ CLASS zcm_rap_order_aii DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF is_order_empty .
 
-    CONSTANTS:
-      BEGIN OF status_already_set,
-        msgid TYPE symsgid VALUE 'ZRAP_ORDERS_MSG_AII',
-        msgno TYPE symsgno VALUE '014',
-        attr1 TYPE scx_attrname VALUE '',
-        attr2 TYPE scx_attrname VALUE '',
-        attr3 TYPE scx_attrname VALUE '',
-        attr4 TYPE scx_attrname VALUE '',
-      END OF status_already_set.
+    " The commented part of code was part of previous implementation
+    " It has been deactivated as this responsibility  is now handled in the METHOD get_instance_features.
+*    CONSTANTS:
+*      BEGIN OF status_already_set,
+*        msgid TYPE symsgid VALUE 'ZRAP_ORDERS_MSG_AII',
+*        msgno TYPE symsgno VALUE '014',
+*        attr1 TYPE scx_attrname VALUE '',
+*        attr2 TYPE scx_attrname VALUE '',
+*        attr3 TYPE scx_attrname VALUE '',
+*        attr4 TYPE scx_attrname VALUE '',
+*      END OF status_already_set.
 
     DATA:
       customerid       TYPE string               READ-ONLY,
