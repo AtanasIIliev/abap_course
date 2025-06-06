@@ -3,13 +3,11 @@
   headerInfo: { typeName: 'Order',
                 typeNamePlural: 'Orders',
                 title: { type: #STANDARD, label: 'Order', value: 'OrderID' } },
-  presentationVariant: [{ sortOrder: [{ by: 'CreationDt', direction:  #DESC }] }] }
+  presentationVariant: [{ sortOrder: [{ by: 'CreationDt', direction: #DESC }] }] }
   
 annotate view ZC_RAP_ORDER_AII
     with 
 {
-
-//TODO: Labels for fieldgroup elements!!!
   
   @UI.facet: [ { id:              'Order', 
                  purpose:         #HEADER,

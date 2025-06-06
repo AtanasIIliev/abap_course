@@ -11,9 +11,9 @@ define root view entity ZC_RAP_ORDER_AII
     @Search.defaultSearchElement: true
     OrderId,
     Name,
-    @Search.defaultSearchElement: true
-    @Consumption.valueHelpDefinition : [{ entity : {name: 'ZI_RAP_STATUS_AII', element: 'StatusDescription'}  }]
+    @Consumption.valueHelpDefinition : [{ entity : {name: 'ZI_RAP_STATUS_AII', element: 'StatusId'}  }]
     @ObjectModel.text.element: [ 'StatusDescription' ]
+    @Search.defaultSearchElement: true
     Status,
     StatusDescription,
     @EndUserText.label: 'Complexity'
